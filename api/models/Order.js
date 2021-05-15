@@ -21,6 +21,11 @@ class Order {
 				type: Number,
 				required: true,
 			},
+			isCompleted: {
+				type: Boolean,
+				required: true,
+				default: false,
+			},
 			createdAt: {
 				type: Date,
 				required: true,
