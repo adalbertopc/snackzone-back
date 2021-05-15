@@ -15,6 +15,7 @@ app.use(cors());
 //routes
 
 app.use(require('./api/routes/ProductRoutes'));
+app.use(require('./api/routes/OrderRoutes'));
 
 app.set('secretKey', process.env.TOKEN_KEY || 'nodeRestApi'); // jwt secret token
 //turn on server
