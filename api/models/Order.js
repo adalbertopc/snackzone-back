@@ -13,8 +13,11 @@ class Order {
 			},
 			products: [
 				{
+					productId: String,
 					productName: String,
+					qty: Number,
 					price: Number,
+					total: Number,
 				},
 			],
 			total: {
@@ -33,6 +36,7 @@ class Order {
 			},
 			completedAt: {
 				type: Date,
+				default: null,
 			},
 		});
 		mongoose.model('Order', schema);
