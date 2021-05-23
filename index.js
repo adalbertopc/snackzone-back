@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-// const io = require('socket.io')(server);
+const { socketConnection } = require('./utils/sockets');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -11,6 +11,7 @@ require('./database/Connection');
 //Middlewares
 app.use(express.json());
 app.use(cors());
+socketConnection(server);
 
 //routes
 app.use(require('./api/routes/UserRoutes'));
@@ -22,3 +23,7 @@ app.set('secretKey', process.env.TOKEN_KEY || 'nodeRestApi'); // jwt secret toke
 server.listen(PORT, () => {
 	console.log('Server on port ' + PORT);
 });
+
+module.exports = function getIO() {
+	return io;
+};

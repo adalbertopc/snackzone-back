@@ -4,6 +4,8 @@ const Order = require('../models/Order');
 
 const orderService = new OrderService(new Order().getInstance());
 
+const { notifyOrder } = require('../../utils/sockets');
+
 class OrderController extends Controller {
 	constructor(service) {
 		super(service);
@@ -15,6 +17,13 @@ class OrderController extends Controller {
 		);
 
 		return res.status(200).send({ ...unsortedData, data: sorted });
+	}
+
+	async insert(req, res) {
+		const response = await this.service.insert(req.body);
+		if (response.error) return res.status(response.statusCode).send(response);
+		notifyOrder(response.item);
+		return res.status(201).send(response);
 	}
 }
 
