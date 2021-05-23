@@ -4,8 +4,8 @@ const ProductController = require('../controllers/ProductController');
 const verifyToken = require('../middlewares/verifyToken');
 
 router.get('/products', ProductController.getAll);
-router.post('/products', ProductController.insert);
-router.put('/products/:id', ProductController.update);
-router.delete('/products/:id', ProductController.delete);
+router.post('/products', verifyToken, ProductController.insert);
+router.put('/products/:id', verifyToken, ProductController.update);
+router.delete('/products/:id', verifyToken, ProductController.delete);
 
 module.exports = router;
