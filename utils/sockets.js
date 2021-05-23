@@ -6,12 +6,7 @@ exports.socketConnection = (server) => {
 			origin: '*',
 		},
 	});
-	io.on('connection', (socket) => {
-		console.log('Client Connected');
-		socket.on('disconnect', () => {
-			console.info(`Client disconnected [id=${socket.id}]`);
-		});
-	});
+	io.on('connection', (socket) => {});
 };
 
 exports.notifyOrder = (order) => io.emit('NEW ORDER', order);
