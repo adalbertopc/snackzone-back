@@ -7,10 +7,7 @@ exports.socketConnection = (server) => {
 		},
 	});
 	io.on('connection', (socket) => {
-		console.log('Client Connected');
-		socket.on('disconnect', () => {
-			console.info(`Client disconnected [id=${socket.id}]`);
-		});
+		socket.on('disconnect', () => {});
 	});
 };
 
